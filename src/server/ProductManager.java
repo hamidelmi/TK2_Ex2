@@ -1,10 +1,12 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ProductManager {
 	private ArrayList<Product> produts;
+	private HashMap<Integer, String> users;
 
 	public ArrayList<Product> getProducts() {
 		return produts;
@@ -16,6 +18,7 @@ public class ProductManager {
 
 	public ProductManager() {
 		produts = new ArrayList<Product>();
+		users = new HashMap<Integer, String>();
 	}
 
 	public void addProduct(Product p) {
@@ -35,7 +38,7 @@ public class ProductManager {
 		StringBuilder sb = new StringBuilder();
 
 		for (Product p : produts) {
-			sb.append(p.toString() + "|");
+			sb.append(p.toString() + "&");
 		}
 
 		return sb.toString();
@@ -45,4 +48,9 @@ public class ProductManager {
 		return this.produts;
 	}
 
+	public Integer addUser(String name) {
+		Integer id = users.size();
+		users.put(id, name);
+		return id;
+	}
 }

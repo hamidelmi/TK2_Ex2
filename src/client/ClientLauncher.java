@@ -10,7 +10,8 @@ public class ClientLauncher {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new MainController(args.length > 0 ? args[0] : "");
+				new MainController(args.length > 0 ? args[0]
+						: "http://localhost:8080");
 			}
 		});
 	}

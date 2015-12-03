@@ -22,6 +22,13 @@ public class ShopREST {
 	}
 
 	@GET
+	@Path("/register/{userName}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String register(@PathParam("userName") String userName) {
+		return pm.addUser(userName).toString();
+	}
+
+	@GET
 	@Path("/list")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getList() {

@@ -12,19 +12,16 @@ public class MainController {
 
 	private MainView mainView;
 	private String username;
+	private Integer userId;
 	private List<ProductModel> products;
 
-	public MainController(String ipAddress) {
-		products = new ArrayList<ProductModel>();
+	public MainController(String url) {
+		products = ProductModel.getListFromServer(url);
 		mainView = new MainView(this);
 		String title = "Login";
 
 		username = mainView.showLoginDialog(title);
-
-		products.add(new ProductModel("P1", 123, 1));
-		products.add(new ProductModel("P2", 321, 2));
-		products.add(new ProductModel("P3", 456, 3));
-		
-		mainView.showProductsDialog(username, products);
+		userId = ProductModel.login(url, username);
+		mainView.showProductsDialog(userId + "-" + username, products);
 	}
 }
