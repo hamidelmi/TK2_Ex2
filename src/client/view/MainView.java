@@ -29,9 +29,9 @@ public class MainView extends JFrame {
 	 * 
 	 * @return player name
 	 */
-	public String showLoginDialog(String errorMessage) {
+	public String showLoginDialog(String title) {
 		Window win = SwingUtilities.getWindowAncestor(this);
-		loginDialog = new LoginView(win, errorMessage,
+		loginDialog = new LoginView(win, title,
 				ModalityType.APPLICATION_MODAL);
 		loginDialog.setVisible(true);
 

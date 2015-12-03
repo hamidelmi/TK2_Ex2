@@ -7,8 +7,12 @@ import client.view.MainView;
 public class MainController {
 
 	private MainView mainView;
-
+	private String username;
+	
 	public MainController(String ipAddress) {
 		mainView = new MainView(this);
+		String title = "Login";
+		
+		username = mainView.showLoginDialog(title);
 	}
 }
