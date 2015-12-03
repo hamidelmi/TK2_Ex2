@@ -13,7 +13,7 @@ public class Product {
 		return this.price;
 	}
 
-	private Integer availableAmount;
+	public Integer availableAmount;
 
 	public Integer getAvailableAmount() {
 		return this.availableAmount;

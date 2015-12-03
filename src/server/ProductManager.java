@@ -14,11 +14,13 @@ public class ProductManager {
 	}
     
 	public boolean decreaseAmout(Product p) {
-		if (p.availableAmount=0)
+		
+		if (p.availableAmount ==0)
 		{
 			return false;
 		}
 		
+		return true;
 		
 	}
 }
