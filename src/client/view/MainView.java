@@ -13,6 +13,7 @@ import client.controller.MainController;
 public class MainView extends JFrame {
 	private MainController controller;
 	private LoginView loginDialog;
+	private ProductsView productsDialog;
 	
 	public MainView(MainController mc) {
 		this.controller = mc;
@@ -36,6 +37,15 @@ public class MainView extends JFrame {
 		loginDialog.setVisible(true);
 
 		return loginDialog.getUsername();
+	}
+	
+	public void showProductsDialog(String title){
+		Window win = SwingUtilities.getWindowAncestor(this);
+		productsDialog = new ProductsView(win, title,
+				ModalityType.APPLICATION_MODAL);
+		productsDialog.setVisible(true);
+
+//		return loginDialog.getUsername();
 	}
 
 }
