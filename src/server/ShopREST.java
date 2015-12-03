@@ -1,40 +1,41 @@
 package server;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-
-@Path("/calc")
+@Path("/shop")
 public class ShopREST {
+	private static ProductManager pm;
 
-	@GET
-	@Path("/add/{a}/{b}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String addPlainText(@PathParam("a") double a, @PathParam("b") double b) {
-		return (a + b) + "";
-	}
-	
-	@GET
-	@Path("/sub/{a}/{b}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String subPlainText(@PathParam("a") double a, @PathParam("b") double b) {
-		return (a - b) + "";
+	public ShopREST() {
+		if (pm == null) {
+			pm = new ProductManager();
+			pm.addProduct(new Product("Apple", 1300, 10));
+			pm.addProduct(new Product("IBM", 1300, 10));
+			pm.addProduct(new Product("HP", 1300, 10));
+		}
 	}
 
 	@GET
-	@Path("/add/{a}/{b}")
-	@Produces(MediaType.TEXT_XML)
-	public String add(@PathParam("a") double a, @PathParam("b") double b) {
-		return "<?xml version=\"1.0\"?>" + "<result>" +  (a + b) + "</result>";
+	@Path("/list")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getList() {
+		return pm.toString();
 	}
-	
+
 	@GET
-	@Path("/sub/{a}/{b}")
-	@Produces(MediaType.TEXT_XML)
-	public String sub(@PathParam("a") double a, @PathParam("b") double b) {
-		return "<?xml version=\"1.0\"?>" + "<result>" +  (a - b) + "</result>";
+	@Path("/order/{productName}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String order(@PathParam("productName") String productName) {
+		boolean result = pm.decreaseAmout(productName);
+		if (result)
+			return "order succeed!";
+		else
+			return "order failed!";
 	}
 }
